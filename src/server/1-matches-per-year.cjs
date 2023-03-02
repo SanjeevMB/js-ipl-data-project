@@ -15,7 +15,7 @@ function main() {
     fs.createReadStream(path.join(__dirname, matchFilePath))
         .pipe(
             parse({
-                columns: true, dslimiter: ','
+                columns: true, delimiter: ','
             })).on('data', function (dataRow) {
                 if (matches[dataRow.season] === undefined) {
                     matches[dataRow.season] = 1;

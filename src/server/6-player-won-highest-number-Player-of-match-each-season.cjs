@@ -1,5 +1,4 @@
 // Find a player who has won the highest number of Player of the Match awards for each season
-// player_of_match
 
 const fs = require('fs');
 const path = require('path');
@@ -55,8 +54,3 @@ function main() {
 }
 
 main();
-
-
-
-
-
