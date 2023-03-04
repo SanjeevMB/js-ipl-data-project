@@ -53,7 +53,7 @@ function main(Batsman) {
 
                             })
                             Object.entries(batterStrike).map((element, index, array) => {
-                                let strikeRate = ((parseInt(element[1].runs) / parseInt(element[1].balls)) * 100);
+                                let strikeRate = ((parseInt(element[1].runs) / parseInt(element[1].balls)) * 100).toFixed(2);
                                 element[1]["Strike_rate"] = strikeRate;
                             })
 

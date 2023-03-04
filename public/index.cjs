@@ -1,17 +1,11 @@
-
 fetch('./output/1-matches-per-year.json')
   .then((data) => data.json())
   .then((data) => {
-    let matchYear = Object.values(data);
-
+    let matchPerYear = Object.values(data);
     Highcharts.chart('container1', {
 
       title: {
-        text: 'Indian premier league',
-        align: 'left'
-      },
-
-      subtitle: {
+        text: 'Indian premier league total matches 2008-2017',
         align: 'left'
       },
 
@@ -23,7 +17,7 @@ fetch('./output/1-matches-per-year.json')
 
       xAxis: {
         accessibility: {
-          rangeDescription: 'Range: 2008 to 2020'
+          rangeDescription: 'Range: 2008 to 2023'
         }
       },
 
@@ -43,8 +37,8 @@ fetch('./output/1-matches-per-year.json')
       },
 
       series: [{
-        name: 'Mathes per year',
-        data: matchYear
+        name: 'IPL',
+        data: matchPerYear
       }],
 
       responsive: {
@@ -63,73 +57,417 @@ fetch('./output/1-matches-per-year.json')
       }
 
     });
+
+  })
+
+fetch('./output/3-extra-runs-per-team-in-2016.json')
+  .then((data) => data.json())
+  .then((data) => {
+    let extraRunValues = Object.values(data);
+    let extraRunKeys = Object.keys(data);
+
+    // Data retrieved https://en.wikipedia.org/wiki/List_of_cities_by_average_temperature
+    Highcharts.chart('container3', {
+      chart: {
+        type: 'line'
+      },
+      title: {
+        text: 'Extra runs given by per team in 2016'
+      },
+      subtitle: {
+        text: '' +
+          '<a href="https://en.wikipedia.org/wiki/List_of_cities_by_average_temperature" ' +
+          'target="_blank"></a>'
+      },
+      xAxis: {
+        categories: extraRunKeys
+      },
+      yAxis: {
+        title: {
+          text: 'Extra runs'
+        }
+      },
+      plotOptions: {
+        line: {
+          dataLabels: {
+            enabled: true
+          },
+          enableMouseTracking: false
+        }
+      },
+      series: [{
+        name: 'Teams',
+        data: extraRunValues
+      },]
+    });
   });
 
 
+fetch('.//output/4-top-10-economical-bowlers-in-2015.json')
+  .then((data) => data.json())
+  .then((data) => {
+    let bowlerName = data.map((element) => {
+      return element[0];
+    });
+    let economy = data.map((element) => {
+      return element[1];
+    });
 
-fetch('./output/3-extra-runs-per-team-in-2016.json')
-.then((data) => data.json())
-.then((data) => {
-  let extraRuns = Object.values(data);
-
-  Highcharts.chart('container3', {
-
-    title: {
-      text: 'Indian premier league',
-      align: 'left'
-    },
-
-    subtitle: {
-      align: 'left'
-    },
-
-    yAxis: {
+    // Data retrieved https://en.wikipedia.org/wiki/List_of_cities_by_average_temperature
+    Highcharts.chart('container4', {
+      chart: {
+        type: 'spline'
+      },
       title: {
-        text: 'Extra runs per team in 2016'
-      }
-    },
-
-    xAxis: {
-      accessibility: {
-        rangeDescription: 'Range: 2008 to 2020'
-      }
-    },
-
-    legend: {
-      layout: 'vertical',
-      align: 'right',
-      verticalAlign: 'middle'
-    },
-
-    plotOptions: {
-      series: {
-        label: {
-          connectorAllowed: false
+        text: 'Top ten economical bowler'
+      },
+      subtitle: {
+        text: '' +
+          '<a href="https://en.wikipedia.org/wiki/List_of_cities_by_average_temperature" ' +
+          'target="_blank"></a>'
+      },
+      xAxis: {
+        categories: bowlerName,
+        accessibility: {
+          description: 'Months of'
+        }
+      },
+      yAxis: {
+        title: {
+          text: 'Economy rate'
         },
-        pointStart: 2008
-      }
-    },
-
-    series: [{
-      name: 'Extra runs per team in 2016',
-      data: extraRuns
-    }],
-
-    responsive: {
-      rules: [{
-        condition: {
-          maxWidth: 500
+        labels: {
+          formatter: function (economy) {
+            return economy.value;
+          }
+        }
+      },
+      tooltip: {
+        crosshairs: true,
+        shared: true
+      },
+      plotOptions: {
+        spline: {
+          marker: {
+            radius: 4,
+            lineColor: '#666666',
+            lineWidth: 1
+          }
+        }
+      },
+      series: [{
+        name: 'Economy',
+        marker: {
+          symbol: 'diamond'
         },
-        chartOptions: {
-          legend: {
-            layout: 'horizontal',
-            align: 'center',
-            verticalAlign: 'bottom'
+        data: [{
+          y: 1.5,
+          marker: {
+            // symbol: 'url(https://www.highcharts.com/samples/graphics/snow.png)'
+          },
+          accessibility: {
+            description: 'Snowy symbol, this is the coldest point in the chart.'
+          }
+        }, economy[0], economy[1], economy[2], economy[3], economy[4], economy[5], economy[6], economy[7], economy[8]]
+      }]
+    });
+  });
+
+
+fetch('./output/5-number-of-times-each-team-won-toss-and-also-won-the-match.json')
+  .then((data) => data.json())
+  .then((data) => {
+    let teams = Object.values(data);
+    let wonCount = Object.keys(data);
+
+    // Data retrieved https://en.wikipedia.org/wiki/List_of_cities_by_average_temperature
+    Highcharts.chart('container5', {
+      chart: {
+        type: 'line'
+      },
+      title: {
+        text: 'Number of matches and toss both won by team'
+      },
+      subtitle: {
+        text: '' +
+          '<a href="https://en.wikipedia.org/wiki/List_of_cities_by_average_temperature" ' +
+          'target="_blank"></a>'
+      },
+      xAxis: {
+        categories: wonCount
+      },
+      yAxis: {
+        title: {
+          text: 'Matches won'
+        }
+      },
+      plotOptions: {
+        line: {
+          dataLabels: {
+            enabled: true
+          },
+          enableMouseTracking: false
+        }
+      },
+      series: [{
+        name: 'Teams',
+        data: teams
+      },]
+    });
+  });
+
+  fetch('./output/6-player-won-highest-number-Player-of-match-each-season.json')
+  .then((data) => data.json())
+  .then((data) => {
+
+    let seasonEconomy = Object.values(data);
+
+    Highcharts.chart('container6', {
+      chart: {
+        type: 'column'
+      },
+      title: {
+        text: 'Bowler with best economy'
+      },
+      subtitle: {
+        text: ': <a href="https://worldpopulationreview.com/world-cities" target="_blank"></a>'
+      },
+      xAxis: {
+        type: 'category',
+        labels: {
+          rotation: -45,
+          style: {
+            fontSize: '13px',
+            fontFamily: 'Verdana, sans-serif'
+          }
+        }
+      },
+      yAxis: {
+        min: 0,
+        title: {
+          text: 'Strike rate'
+        }
+      },
+      legend: {
+        enabled: false
+      },
+      tooltip: {
+        pointFormat: 'Population in 2021: <b>{point.y:.1f} millions</b>'
+      },
+      series: [{
+        name: 'Population',
+        data: seasonEconomy,
+        dataLabels: {
+          enabled: true,
+          rotation: -90,
+          color: '#FFFFFF',
+          align: 'right',
+          format: '{point.y:.1f}', // one decimal
+          y: 10, // 10 pixels down from the top
+          style: {
+            fontSize: '13px',
+            fontFamily: 'Verdana, sans-serif'
           }
         }
       }]
-    }
-
+    });
   });
-});
+
+
+fetch('./output/7-strike-rate-of-a-batsman-each-season.json')
+  .then((data) => data.json())
+  .then((data) => {
+
+    let seasonEconomy = [];
+
+
+    let keys = Object.keys(data);
+    let value = Object.values(data);
+
+    let count = 0;
+    keys.map((element) => {
+      let temp = [];
+      temp.push(element);
+      temp.push(value[count].Strike_rate);
+      seasonEconomy.push(temp);
+      count++;
+    })
+
+    let usableData = []
+    seasonEconomy.map((element) => {
+      let temp = []
+      temp.push(element[0])
+      temp.push(Number(element[1]));
+      usableData.push(temp);
+    })
+
+
+
+    Highcharts.chart('container7', {
+      chart: {
+        type: 'column'
+      },
+      title: {
+        text: 'David Warner economy in IPL from 2009 2017'
+      },
+      subtitle: {
+        text: ': <a href="https://worldpopulationreview.com/world-cities" target="_blank"></a>'
+      },
+      xAxis: {
+        type: 'category',
+        labels: {
+          rotation: -45,
+          style: {
+            fontSize: '13px',
+            fontFamily: 'Verdana, sans-serif'
+          }
+        }
+      },
+      yAxis: {
+        min: 0,
+        title: {
+          text: 'Strike rate'
+        }
+      },
+      legend: {
+        enabled: false
+      },
+      tooltip: {
+        pointFormat: 'Population in 2021: <b>{point.y:.1f} millions</b>'
+      },
+      series: [{
+        name: 'Population',
+        data: usableData,
+        dataLabels: {
+          enabled: true,
+          rotation: -90,
+          color: '#FFFFFF',
+          align: 'right',
+          format: '{point.y:.1f}', // one decimal
+          y: 10, // 10 pixels down from the top
+          style: {
+            fontSize: '13px',
+            fontFamily: 'Verdana, sans-serif'
+          }
+        }
+      }]
+    });
+  });
+
+fetch('./output/8-highest-number-of-times-one-player-dismissed-by-another-player.json')
+  .then((data) => data.json())
+  .then((data) => {
+
+    Highcharts.chart('container8', {
+      chart: {
+        type: 'column'
+      },
+      title: {
+        align: 'left',
+        text: 'Highest No of time one player dissmissed'
+      },
+      subtitle: {
+        align: 'left',
+        text: '<a href="http://statcounter.com" target="_blank"></a>'
+      },
+      accessibility: {
+        announceNewData: {
+          enabled: true
+        }
+      },
+      xAxis: {
+        type: 'category'
+      },
+      yAxis: {
+        title: {
+          text: 'Dissmissed time'
+        }
+
+      },
+      legend: {
+        enabled: false
+      },
+      plotOptions: {
+        series: {
+          borderWidth: 0,
+          dataLabels: {
+            enabled: true,
+          }
+        }
+      },
+
+      series: [
+        {
+          name: data[0],
+          colorByPoint: true,
+          data: [
+            {
+              name: data[0],
+              y: data[1],
+            },
+          ]
+        }
+      ],
+    });
+  });
+
+
+  fetch('./output/9-bowler-with-best-economy-in-super-overs.json')
+  .then((data) => data.json())
+  .then((data) => {
+
+    let dataArr = ["JJ Bumrah",4];
+
+    Highcharts.chart('container9', {
+      chart: {
+        type: 'column'
+      },
+      title: {
+        align: 'left',
+        text: 'Bowler with best economy in super over'
+      },
+      subtitle: {
+        align: 'left',
+        text: '<a href="http://statcounter.com" target="_blank"></a>'
+      },
+      accessibility: {
+        announceNewData: {
+          enabled: true
+        }
+      },
+      xAxis: {
+        type: 'category'
+      },
+      yAxis: {
+        title: {
+          text: 'Dissmissed time'
+        }
+
+      },
+      legend: {
+        enabled: false
+      },
+      plotOptions: {
+        series: {
+          borderWidth: 0,
+          dataLabels: {
+            enabled: true,
+          }
+        }
+      },
+
+      series: [
+        {
+          name: dataArr[0],
+          colorByPoint: true,
+          data: [
+            {
+              name: dataArr[0],
+              y: dataArr[1],
+            },
+          ]
+        }
+      ],
+    });
+  });
 
