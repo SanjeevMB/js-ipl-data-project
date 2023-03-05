@@ -58,6 +58,136 @@ fetch('./output/1-matches-per-year.json')
 
     });
 
+  });
+
+
+fetch('./output/2-matches-won-per-team-per-year.json')
+  .then((data) => data.json())
+  .then((data) => {
+
+    let allValues = data.map((element) => {
+      return Object.values(element)
+    })
+
+    // Data retrieved https://en.wikipedia.org/wiki/List_of_cities_by_average_temperature
+    Highcharts.chart('container2', {
+      chart: {
+        type: 'spline'
+      },
+      title: {
+        text: 'Matches won per team per year'
+      },
+      subtitle: {
+        text: '' +
+          '<a href="https://en.wikipedia.org/wiki/List_of_cities_by_average_temperature" ' +
+          'target="_blank"></a>'
+      },
+      xAxis: {
+        categories: [2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019],
+        accessibility: {
+          description: 'Months of the year'
+        }
+      },
+      yAxis: {
+        title: {
+          text: 'Matches won'
+        },
+        labels: {
+          formatter: function () {
+            return this.value;
+          }
+        }
+      },
+      tooltip: {
+        crosshairs: true,
+        shared: true
+      },
+      plotOptions: {
+        spline: {
+          marker: {
+            radius: 4,
+            lineColor: '#666666',
+            lineWidth: 1
+          }
+        }
+      },
+      series: [{
+        name: allValues[0][allValues[0].length-1],
+        marker: {
+          symbol: 'square'
+        },
+        data: allValues[0]
+
+      }, {
+        name: allValues[1][allValues[1].length-1],
+        marker: {
+          symbol: 'disc'
+        },
+        data: allValues[1]
+      },{
+        name: allValues[2][allValues[2].length-1],
+        marker: {
+          symbol: 'circle'
+        },
+        data: allValues[2]
+      },{
+        name: allValues[3][allValues[3].length-1],
+        marker: {
+          symbol: 'triangle'
+        },
+        data: allValues[3]
+      },{
+        name: allValues[4][allValues[4].length-1],
+        marker: {
+          symbol: 'diamond'
+        },
+        data: allValues[4]
+      },{
+        name: allValues[5][allValues[5].length-1],
+        marker: {
+          symbol: 'triangle'
+        },
+        data: allValues[6]
+      },{
+        name: allValues[7][allValues[7].length-1],
+        marker: {
+          symbol: 'diamond'
+        },
+        data: allValues[7]
+      },{
+        name: allValues[8][allValues[8].length-1],
+        marker: {
+          symbol: 'diamond'
+        },
+        data: allValues[8]
+      },{
+        name: allValues[9][allValues[9].length-1],
+        marker: {
+          symbol: 'dot'
+        },
+        data: allValues[9]
+      },{
+        name: allValues[10][allValues[10].length-1],
+        marker: {
+          symbol: 'diamond'
+        },
+        data: allValues[10]
+      },{
+        name: allValues[11][allValues[11].length-1],
+        marker: {
+          symbol: 'triangle'
+        },
+        data: allValues[11]
+      },{
+        name: allValues[12][allValues[12].length-1],
+        marker: {
+          symbol: 'circle'
+        },
+        data: allValues[12]
+      }]
+    });
+
+
   })
 
 fetch('./output/3-extra-runs-per-team-in-2016.json')
@@ -216,7 +346,7 @@ fetch('./output/5-number-of-times-each-team-won-toss-and-also-won-the-match.json
     });
   });
 
-  fetch('./output/6-player-won-highest-number-Player-of-match-each-season.json')
+fetch('./output/6-player-won-highest-number-Player-of-match-each-season.json')
   .then((data) => data.json())
   .then((data) => {
 
@@ -412,11 +542,11 @@ fetch('./output/8-highest-number-of-times-one-player-dismissed-by-another-player
   });
 
 
-  fetch('./output/9-bowler-with-best-economy-in-super-overs.json')
+fetch('./output/9-bowler-with-best-economy-in-super-overs.json')
   .then((data) => data.json())
   .then((data) => {
 
-    let dataArr = ["JJ Bumrah",4];
+    let dataArr = ["JJ Bumrah", 4];
 
     Highcharts.chart('container9', {
       chart: {

@@ -12,9 +12,9 @@ function main(Batsman) {
     let seasonId = {};
     let batterStrike = {};
 
-    let matchFilePath = './../../data/matches.csv';
-    let deliveryFilePath = './../../data/deliveries.csv';
-    let targetFilePath = './../../public/output/7-strike-rate-of-a-batsman-each-season.json';
+    let matchFilePath = './../data/matches.csv';
+    let deliveryFilePath = './../data/deliveries.csv';
+    let targetFilePath = './../public/output/7-strike-rate-of-a-batsman-each-season.json';
 
 
     fs.createReadStream(path.join(__dirname, matchFilePath))

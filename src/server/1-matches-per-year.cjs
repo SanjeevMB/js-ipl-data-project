@@ -9,8 +9,8 @@ function main() {
 
     let matches = {};
     
-    let matchFilePath = './../../data/matches.csv';
-    let targetFilePath = './../../public/output/1-matches-per-year.json';
+    let matchFilePath = './../data/matches.csv';
+    let targetFilePath = './../public/output/1-matches-per-year.json';
 
     fs.createReadStream(path.join(__dirname, matchFilePath))
         .pipe(

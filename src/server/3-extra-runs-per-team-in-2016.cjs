@@ -9,9 +9,9 @@ function main() {
     let matches = [];
     let extraRunsStore = {};
 
-    let matchFilePath = './../../data/matches.csv';
-    let deliveryFilePath = './../../data/deliveries.csv';
-    let targetFilePath = './../../public/output/3-extra-runs-per-team-in-2016.json';
+    let matchFilePath = './../data/matches.csv';
+    let deliveryFilePath = './../data/deliveries.csv';
+    let targetFilePath = './../public/output/3-extra-runs-per-team-in-2016.json';
 
     fs.createReadStream(path.join(__dirname, matchFilePath))
         .pipe(

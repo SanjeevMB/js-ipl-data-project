@@ -10,8 +10,8 @@ function main() {
     let delivery = [];
     let superOver = {};
 
-    let deliveryFilePath = './../../data/deliveries.csv';
-    let targetFilePath = './../../public/output/9-bowler-with-best-economy-in-super-overs.json';
+    let deliveryFilePath = './../data/deliveries.csv';
+    let targetFilePath = './../public/output/9-bowler-with-best-economy-in-super-overs.json';
 
     fs.createReadStream(path.join(__dirname, deliveryFilePath))
         .pipe(

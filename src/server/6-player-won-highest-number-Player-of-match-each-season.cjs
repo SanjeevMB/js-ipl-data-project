@@ -10,8 +10,8 @@ function main() {
     let playerOfMatch = {};
     let highestPlayerOfMatch = {};
 
-    let matchFilePath = './../../data/matches.csv';
-    let targetFilePath = './../../public/output/6-player-won-highest-number-Player-of-match-each-season.json';
+    let matchFilePath = './../data/matches.csv';
+    let targetFilePath = './../public/output/6-player-won-highest-number-Player-of-match-each-season.json';
 
     fs.createReadStream(path.join(__dirname, matchFilePath))
         .pipe(

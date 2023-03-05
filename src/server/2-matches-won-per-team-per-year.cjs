@@ -8,8 +8,8 @@ function main() {
 
     let matchWon = [];
 
-    let dataFilePath = './../../data/matches.csv';
-    let writeFilePath = './../../public/output/2-matches-won-per-team-per-year.json';
+    let dataFilePath = './../data/matches.csv';
+    let writeFilePath = './../public/output/2-matches-won-per-team-per-year.json';
 
     fs.createReadStream(path.join(__dirname, dataFilePath))
         .pipe(

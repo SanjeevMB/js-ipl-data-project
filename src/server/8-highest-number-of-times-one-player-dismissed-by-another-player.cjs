@@ -8,8 +8,8 @@ function main(batsman) {
 
     let playerDismissed = {};
 
-    let deliveryFilePath = './../../data/deliveries.csv';
-    let targetFilePath = './../../public/output/8-highest-number-of-times-one-player-dismissed-by-another-player.json';
+    let deliveryFilePath = './../data/deliveries.csv';
+    let targetFilePath = './../public/output/8-highest-number-of-times-one-player-dismissed-by-another-player.json';
 
     fs.createReadStream(path.join(__dirname, deliveryFilePath))
     .pipe(

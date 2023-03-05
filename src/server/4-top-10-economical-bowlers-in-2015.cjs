@@ -9,9 +9,9 @@ function main() {
     let bowlersEconomyStore = [];
     let bowlersRecord = {};
 
-    let matchFilePath = './../../data/matches.csv';
-    let deliveryFilePath = './../../data/deliveries.csv';
-    let targetFilePath = './../../public/output/4-top-10-economical-bowlers-in-2015.json';
+    let matchFilePath = './../data/matches.csv';
+    let deliveryFilePath = './../data/deliveries.csv';
+    let targetFilePath = './../public/output/4-top-10-economical-bowlers-in-2015.json';
 
     fs.createReadStream(path.join(__dirname, matchFilePath))
         .pipe(
